@@ -1,0 +1,21 @@
+{
+  "name": "pnz/solarium-clustering-query",
+  "license": "LGPL-3.0",
+  "description": "Solarium Query support for Clustering handler",
+  "require": {
+    "php": "^7.1",
+    "ext-json": "*",
+    "solarium/solarium": "^4.0"
+  },
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Pnz\\SolariumClustering\\": "/src"
+    }
+  }
+}
