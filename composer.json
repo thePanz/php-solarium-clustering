@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Pnz\\SolariumClustering\\": "/src"
+      "Pnz\\SolariumClustering\\": "src/"
     }
   },
   "extra": {
