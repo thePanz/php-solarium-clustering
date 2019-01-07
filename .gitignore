@@ -1,2 +1,4 @@
-/tools/
 /.php_cs.cache
+/composer.lock
+/tools/
+/vendor/

@@ -21,8 +21,6 @@ class Query extends BaseQuery implements SuggesterInterface, QueryInterface
 
     /**
      * Default options.
-     *
-     * @var array
      */
     protected $options = [
         'handler' => 'clustering',
@@ -32,32 +30,17 @@ class Query extends BaseQuery implements SuggesterInterface, QueryInterface
         'reload' => false,
     ];
 
-    /**
-     * Get type for this query.
-     *
-     * @return string
-     */
-    public function getType()
+    public function getType(): string
     {
         return 'clustering';
     }
 
-    /**
-     * Get a requestbuilder for this query.
-     *
-     * @return RequestBuilder
-     */
-    public function getRequestBuilder()
+    public function getRequestBuilder(): RequestBuilder
     {
         return new RequestBuilder();
     }
 
-    /**
-     * Get a response parser for this query.
-     *
-     * @return ResponseParser
-     */
-    public function getResponseParser()
+    public function getResponseParser(): ResponseParser
     {
         return new ResponseParser();
     }

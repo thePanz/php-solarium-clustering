@@ -17,5 +17,10 @@
     "psr-4": {
       "Pnz\\SolariumClustering\\": "/src"
     }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.1.x-dev"
+    }
   }
 }

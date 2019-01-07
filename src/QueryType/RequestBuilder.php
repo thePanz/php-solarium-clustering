@@ -10,10 +10,7 @@ use Solarium\Core\Query\QueryInterface;
 
 class RequestBuilder extends BaseRequestBuilder
 {
-    /**
-     * @return Request
-     */
-    public function build(QueryInterface $query)
+    public function build(QueryInterface $query): Request
     {
         $request = parent::build($query);
 
