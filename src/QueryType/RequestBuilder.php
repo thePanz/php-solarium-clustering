@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Pnz\SolariumClustering\QueryType;
 
 use Solarium\Core\Client\Request;
-use Solarium\Core\Query\AbstractRequestBuilder as BaseRequestBuilder;
+use Solarium\QueryType\Select\RequestBuilder as BaseRequestBuilder;
 use Solarium\Core\Query\QueryInterface;
 
 class RequestBuilder extends BaseRequestBuilder
@@ -15,8 +15,11 @@ class RequestBuilder extends BaseRequestBuilder
         $request = parent::build($query);
 
         if ($query instanceof Query) {
-            $request->addParam('rows', (string) $query->getRows());
-            $request->addParam('clustering.engine', $query->getClusteringEngine());
+            $request
+                ->addParam('rows', (string) $query->getRows())
+                ->addParam('clustering.engine', $query->getClusteringEngine())
+                ->addParam('df', $query->getFields())
+            ;
         }
 
         return $request;

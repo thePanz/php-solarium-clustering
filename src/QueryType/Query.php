@@ -5,17 +5,10 @@ declare(strict_types=1);
 namespace Pnz\SolariumClustering\QueryType;
 
 use Pnz\SolariumClustering\QueryType\Result\Result;
-use Solarium\Component\ComponentTraits\SuggesterTrait;
-use Solarium\Component\QueryInterface;
-use Solarium\Component\QueryTrait;
-use Solarium\Component\SuggesterInterface;
-use Solarium\Core\Query\AbstractQuery as BaseQuery;
+use Solarium\QueryType\Select\Query\Query as BaseQuery;
 
-class Query extends BaseQuery implements SuggesterInterface, QueryInterface
+class Query extends BaseQuery
 {
-    use SuggesterTrait;
-    use QueryTrait;
-
     private const CLUSTERING_ENGINE_OPTION = 'clustering.engine';
     private const ROWS_OPTION = 'rows';
 
@@ -25,6 +18,11 @@ class Query extends BaseQuery implements SuggesterInterface, QueryInterface
     protected $options = [
         'handler' => 'clustering',
         'resultclass' => Result::class,
+        'documentclass' => 'Solarium\QueryType\Select\Result\Document',
+        'query' => '*:*',
+        'start' => 0,
+        'rows' => 10,
+        'fields' => '*,score',
         'omitheader' => true,
         'build' => false,
         'reload' => false,
@@ -48,11 +46,6 @@ class Query extends BaseQuery implements SuggesterInterface, QueryInterface
     public function setClusteringEngine(string $value): void
     {
         $this->setOption(self::CLUSTERING_ENGINE_OPTION, $value);
-    }
-
-    public function setRows(int $value): void
-    {
-        $this->setOption(self::ROWS_OPTION, $value);
     }
 
     public function getRows(): int
