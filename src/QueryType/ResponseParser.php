@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Pnz\SolariumClustering\QueryType;
 
 use Pnz\SolariumClustering\QueryType\Result\Cluster;
-use Solarium\Core\Query\AbstractResponseParser as ResponseParserAbstract;
+use Solarium\QueryType\Select\ResponseParser as BaseResponseParser;
 use Solarium\Core\Query\ResponseParserInterface as ResponseParserInterface;
 use Solarium\QueryType\Suggester\Result\Result;
 
 /**
  * Parse Suggester response data.
  */
-class ResponseParser extends ResponseParserAbstract implements ResponseParserInterface
+class ResponseParser extends BaseResponseParser
 {
     /**
      * Get result data for the response.
@@ -23,6 +23,8 @@ class ResponseParser extends ResponseParserAbstract implements ResponseParserInt
      */
     public function parse($result)
     {
+        $parsed = parent::parse($result);
+
         $data = $result->getData();
         $clusters = [];
 
@@ -32,11 +34,10 @@ class ResponseParser extends ResponseParserAbstract implements ResponseParserInt
             }
         }
 
-        return $this->addHeaderInfo(
-            $data,
-            [
-                'clusters' => $clusters,
-            ]
-        );
+        $a =  array_merge($parsed, [
+            'clusters' => $clusters,
+        ]);
+
+        return $a;
     }
 }

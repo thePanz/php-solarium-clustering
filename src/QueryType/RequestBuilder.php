@@ -16,7 +16,6 @@ class RequestBuilder extends BaseRequestBuilder
 
         if ($query instanceof Query) {
             $request
-                ->addParam('rows', (string) $query->getRows())
                 ->addParam('clustering.engine', $query->getClusteringEngine())
                 ->addParam('df', $query->getFields())
             ;
